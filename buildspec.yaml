@@ -12,12 +12,12 @@ phases:
       - aws cloudformation validate-template --template-body file://ec2cft.yml
       - aws cloudformation create-stack --stack-name codebuildec2stack --template-body file://ec2cft.yml
       - aws cloudformation create-stack --stack-name codebuildemrstack --template-body file://EMR.yml --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND
-      # - aws codebuild start-build --project-name cftcodebuild
+      - aws codebuild start-build --project-name cftcodebuild
       
   post_build:
     commands:
       - echo Build completed on `date`
-      - aws codebuild start-build --project-name cftcodebuild
+      - aws cloudformation delete-stack --stack-name codebuildec2stack
 
 artifacts:
   files:
