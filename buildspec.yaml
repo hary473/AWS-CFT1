@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - aws cloudformation delete-stack --stack-name codebuildec2stack
+      # - aws cloudformation delete-stack --stack-name codebuildec2stack
 
 artifacts:
   files:
